@@ -2,10 +2,10 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 
-import org.apache.http.HttpResponse;
+import org.apache.http.*;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
+
 
 public class HttpClientExample {
 
@@ -16,17 +16,18 @@ public class HttpClientExample {
         HttpClientExample http = new HttpClientExample();
 
         System.out.println("Testing 1 - Send Http GET request");
-        http.sendGet();
+        http.sendGet("https://www.getqardio.com/accept_friend?authToken=a00d42c4a05cfed5c7c62b9561d08b3b&email=qatest02062015@gmail.com");
+
 
 
     }
 
     // HTTP GET request
-    private void sendGet() throws Exception {
+    private void sendGet( String setUrl) throws Exception {
 
-        String url = "http://www.getqardio.com/accept_friend?authToken=a4b89230ea570c42c6120ed25a5f1b42&email=qatest06062015+11@gmail.com";
+        String url = setUrl;
 
-        HttpClient client = new DefaultHttpClient();
+        HttpClient client = CustomHttpClients.createDefault();
         HttpGet request = new HttpGet(url);
 
         // add request header
@@ -50,6 +51,8 @@ public class HttpClientExample {
         System.out.println(result.toString());
 
     }
+
+
 
 
 
